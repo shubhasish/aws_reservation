@@ -51,5 +51,3 @@ class ReservedInstace:
                 writer.writerow([instances['ReservedInstancesId'], instances['OfferingType'], instances['InstanceType'],instances['InstanceCount'], instances['Start'], instances['End'],instances['FixedPrice'], instances['OfferingClass'], instances['ProductDescription']])
         file.close()
 
-reserve = ReservedInstace()
-reserve.getTotalReservation()

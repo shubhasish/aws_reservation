@@ -12,9 +12,11 @@ class CostExplorer:
         current_date = datetime.datetime.now()
         start_date = "%s-0%s-01"%(current_date.year,current_date.month)
         end_date = "%s-0%s-%s" % (current_date.year, current_date.month,current_date.day)
-        response = self.client.get_reservation_coverage(TimePeriod={'Start':start_date,'End':end_date},GroupBy=[{'Type':'DIMENSION','Key':'INSTANCE_TYPE'}])
+        client = boto3.client('ce')
+        response = client.get_reservation_coverage(TimePeriod={'Start':start_date,'End':end_date},GroupBy=[{'Type':'DIMENSION','Key':'INSTANCE_TYPE'}])
 
         self.reservationSorter(response)
+        return self.reservation_coverage_dict
 
 
     def getReservationUtilization(self):
@@ -32,9 +34,8 @@ class CostExplorer:
 
 
 
-
-importer = CostExplorer()
-importer.getReservationUtilization()
+# importer = CostExplorer()
+# importer.getReservationCoverage()
 
 # client = boto3.client('ce')
 #
